@@ -293,7 +293,6 @@
 /Users/lakshaymalhotra/Desktop/Work/Reddit_Projects/PentyFlix/PentyFlixAPI/pentyflixApi/obj/Debug/net8.0/pentyflixApi.csproj.CoreCompileInputs.cache
 /Users/lakshaymalhotra/Desktop/Work/Reddit_Projects/PentyFlix/PentyFlixAPI/pentyflixApi/obj/Debug/net8.0/pentyflixApi.MvcApplicationPartsAssemblyInfo.cs
 /Users/lakshaymalhotra/Desktop/Work/Reddit_Projects/PentyFlix/PentyFlixAPI/pentyflixApi/obj/Debug/net8.0/pentyflixApi.MvcApplicationPartsAssemblyInfo.cache
-/Users/lakshaymalhotra/Desktop/Work/Reddit_Projects/PentyFlix/PentyFlixAPI/pentyflixApi/obj/Debug/net8.0/pentyflixApi.sourcelink.json
 /Users/lakshaymalhotra/Desktop/Work/Reddit_Projects/PentyFlix/PentyFlixAPI/pentyflixApi/obj/Debug/net8.0/staticwebassets.build.json
 /Users/lakshaymalhotra/Desktop/Work/Reddit_Projects/PentyFlix/PentyFlixAPI/pentyflixApi/obj/Debug/net8.0/staticwebassets.development.json
 /Users/lakshaymalhotra/Desktop/Work/Reddit_Projects/PentyFlix/PentyFlixAPI/pentyflixApi/obj/Debug/net8.0/staticwebassets/msbuild.pentyflixApi.Microsoft.AspNetCore.StaticWebAssets.props
