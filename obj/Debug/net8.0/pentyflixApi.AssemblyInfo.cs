@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("pentyflixApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+15066f60c22f2e3f6039feb45d76bd79ccab08e4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+40f26a1af1a588e73c9c4ffa4b49540ed96403ba")]
 [assembly: System.Reflection.AssemblyProductAttribute("pentyflixApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("pentyflixApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

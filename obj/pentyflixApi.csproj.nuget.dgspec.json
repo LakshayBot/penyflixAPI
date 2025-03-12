@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/lakshaymalhotra/Desktop/Work/Reddit_Projects/PentyFlix/PentyFlixAPI/pentyflixApi/pentyflixApi.csproj": {}
+    "/Users/lakshaymalhotra/Desktop/Code Backup/PentyFlixAPI/pentyflixApi/pentyflixApi.csproj": {}
   },
   "projects": {
-    "/Users/lakshaymalhotra/Desktop/Work/Reddit_Projects/PentyFlix/PentyFlixAPI/pentyflixApi/pentyflixApi.csproj": {
+    "/Users/lakshaymalhotra/Desktop/Code Backup/PentyFlixAPI/pentyflixApi/pentyflixApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/lakshaymalhotra/Desktop/Work/Reddit_Projects/PentyFlix/PentyFlixAPI/pentyflixApi/pentyflixApi.csproj",
+        "projectUniqueName": "/Users/lakshaymalhotra/Desktop/Code Backup/PentyFlixAPI/pentyflixApi/pentyflixApi.csproj",
         "projectName": "pentyflixApi",
-        "projectPath": "/Users/lakshaymalhotra/Desktop/Work/Reddit_Projects/PentyFlix/PentyFlixAPI/pentyflixApi/pentyflixApi.csproj",
+        "projectPath": "/Users/lakshaymalhotra/Desktop/Code Backup/PentyFlixAPI/pentyflixApi/pentyflixApi.csproj",
         "packagesPath": "/Users/lakshaymalhotra/.nuget/packages/",
-        "outputPath": "/Users/lakshaymalhotra/Desktop/Work/Reddit_Projects/PentyFlix/PentyFlixAPI/pentyflixApi/obj/",
+        "outputPath": "/Users/lakshaymalhotra/Desktop/Code Backup/PentyFlixAPI/pentyflixApi/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/lakshaymalhotra/.nuget/NuGet/NuGet.Config"

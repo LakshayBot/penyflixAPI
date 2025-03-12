@@ -41,7 +41,7 @@ builder.Services.AddAuthentication(options =>
         ValidAudience = builder.Configuration["JWT:ValidAudience"],
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
     };
-    
+
     // Add custom unauthorized response
     options.Events = new JwtBearerEvents
     {
@@ -49,13 +49,13 @@ builder.Services.AddAuthentication(options =>
         {
             // Avoid default response
             context.HandleResponse();
-            
+
             // Custom response
             context.Response.StatusCode = 401;
             context.Response.ContentType = "application/json";
-            
+
             var result = JsonSerializer.Serialize(new { message = "You are not authorized to access this resource" });
-            
+
             await context.Response.WriteAsync(result);
         }
     };
