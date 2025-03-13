@@ -11,6 +11,9 @@ public class RedditCategoryService
     private readonly HttpClient _httpClient;
     private readonly ILogger<RedditCategoryService> _logger;
     private readonly IMemoryCache _cache;
+    private readonly SemaphoreSlim _requestThrottler = new SemaphoreSlim(1, 1);
+    private DateTime _lastRequestTime = DateTime.MinValue;
+    private readonly Random _random = new Random();
 
     public RedditCategoryService(HttpClient httpClient, ILogger<RedditCategoryService> logger, IMemoryCache cache)
     {
@@ -20,6 +23,63 @@ public class RedditCategoryService
 
         // Set up the HttpClient for Reddit API
         _httpClient.DefaultRequestHeaders.Add("User-Agent", "PentyFlix/1.0");
+    }
+
+    private async Task ApplyThrottlingAndHeaders()
+    {
+        // Apply rate limiting with semaphore to prevent concurrent requests
+        await _requestThrottler.WaitAsync();
+        try
+        {
+            // Ensure minimum delay between requests (2-3 seconds)
+            var timeSinceLastRequest = DateTime.UtcNow - _lastRequestTime;
+            var minimumDelay = TimeSpan.FromMilliseconds(_random.Next(2000, 3000));
+
+            if (timeSinceLastRequest < minimumDelay)
+            {
+                var delayTime = minimumDelay - timeSinceLastRequest;
+                _logger.LogInformation($"Throttling request. Waiting {delayTime.TotalMilliseconds:F0}ms before next request");
+                await Task.Delay(delayTime);
+            }
+
+            _lastRequestTime = DateTime.UtcNow;
+
+            // Ensure we have proper headers for each request
+            EnsureHeaders();
+        }
+        finally
+        {
+            _requestThrottler.Release();
+        }
+    }
+
+    private void EnsureHeaders()
+    {
+        // Clear existing headers to prevent duplicates
+        if (_httpClient.DefaultRequestHeaders.Contains("User-Agent"))
+        {
+            _httpClient.DefaultRequestHeaders.Remove("User-Agent");
+        }
+
+        // Set up the HttpClient for Reddit API with rotating user agents
+        string[] userAgents = new[]
+        {
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15",
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+            "Mozilla/5.0 (iPhone; CPU iPhone OS 14_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1",
+            "PentyFlix/1.0 (Contact: admin@pentyflix.com)"
+        };
+
+        // Choose a random user agent
+        string userAgent = userAgents[_random.Next(userAgents.Length)];
+        _httpClient.DefaultRequestHeaders.Add("User-Agent", userAgent);
+
+        // Add Accept header
+        if (!_httpClient.DefaultRequestHeaders.Contains("Accept"))
+        {
+            _httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
+        }
     }
 
     public async Task<List<RedditCategory>> GetPopularCategories(int limit = 25)
@@ -95,6 +155,8 @@ public class RedditCategoryService
         {
             _logger.LogInformation($"Fetching popular categories, limit: {limit}");
 
+            await ApplyThrottlingAndHeaders();
+
             // Build the Reddit API URL for popular subreddits
             string url = $"https://www.reddit.com/subreddits/popular.json?limit={limit}";
 
@@ -112,6 +174,9 @@ public class RedditCategoryService
         try
         {
             _logger.LogInformation($"Searching categories with query: '{query}', limit: {limit}");
+
+            // Apply throttling and headers
+            await ApplyThrottlingAndHeaders();
 
             // Build the Reddit API URL for subreddit search
             string encodedQuery = Uri.EscapeDataString(query);
@@ -202,7 +267,22 @@ public class RedditCategoryService
     {
         try
         {
+            // Apply throttling and headers (not needed if the calling methods already apply it)
+            // await ApplyThrottlingAndHeaders(); 
+
             var response = await _httpClient.GetAsync(url);
+
+            // Handle rate limiting explicitly
+            if ((int)response.StatusCode == 429)
+            {
+                _logger.LogWarning("Rate limit hit, waiting before retrying...");
+                await Task.Delay(5000); // Wait 5 seconds
+
+                // Apply new headers and retry
+                await ApplyThrottlingAndHeaders();
+                response = await _httpClient.GetAsync(url);
+            }
+
             response.EnsureSuccessStatusCode();
 
             string content = await response.Content.ReadAsStringAsync();
@@ -265,7 +345,22 @@ public class RedditCategoryService
     }
     private async Task<List<RedditCategory>> FetchCategoriesFromUrlUsingJsonDocument(string url)
     {
+        // Apply throttling and headers (not needed if the calling methods already apply it)
+        // await ApplyThrottlingAndHeaders();
+
         var response = await _httpClient.GetAsync(url);
+
+        // Handle rate limiting explicitly
+        if ((int)response.StatusCode == 429)
+        {
+            _logger.LogWarning("Rate limit hit, waiting before retrying...");
+            await Task.Delay(5000); // Wait 5 seconds
+
+            // Apply new headers and retry
+            await ApplyThrottlingAndHeaders();
+            response = await _httpClient.GetAsync(url);
+        }
+
         response.EnsureSuccessStatusCode();
 
         string content = await response.Content.ReadAsStringAsync();
