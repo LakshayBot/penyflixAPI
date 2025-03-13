@@ -463,3 +463,12 @@
 /Users/lakshaymalhotra/Desktop/Code Backup/PentyFlixAPI/pentyflixApi/obj/Debug/net8.0/pentyflixApi.pdb
 /Users/lakshaymalhotra/Desktop/Code Backup/PentyFlixAPI/pentyflixApi/obj/Debug/net8.0/pentyflixApi.genruntimeconfig.cache
 /Users/lakshaymalhotra/Desktop/Code Backup/PentyFlixAPI/pentyflixApi/obj/Debug/net8.0/ref/pentyflixApi.dll
+/Users/lakshaymalhotra/Desktop/Work/Reddit_Projects/PentyFlix/PentyFlixAPI/pentyflixApi/bin/Debug/net8.0/Microsoft.Extensions.Configuration.Binder.dll
+/Users/lakshaymalhotra/Desktop/Work/Reddit_Projects/PentyFlix/PentyFlixAPI/pentyflixApi/bin/Debug/net8.0/Microsoft.Extensions.Diagnostics.dll
+/Users/lakshaymalhotra/Desktop/Work/Reddit_Projects/PentyFlix/PentyFlixAPI/pentyflixApi/bin/Debug/net8.0/Microsoft.Extensions.Diagnostics.Abstractions.dll
+/Users/lakshaymalhotra/Desktop/Work/Reddit_Projects/PentyFlix/PentyFlixAPI/pentyflixApi/bin/Debug/net8.0/Microsoft.Extensions.Http.dll
+/Users/lakshaymalhotra/Desktop/Work/Reddit_Projects/PentyFlix/PentyFlixAPI/pentyflixApi/bin/Debug/net8.0/Microsoft.Extensions.Http.Polly.dll
+/Users/lakshaymalhotra/Desktop/Work/Reddit_Projects/PentyFlix/PentyFlixAPI/pentyflixApi/bin/Debug/net8.0/Microsoft.Extensions.Options.ConfigurationExtensions.dll
+/Users/lakshaymalhotra/Desktop/Work/Reddit_Projects/PentyFlix/PentyFlixAPI/pentyflixApi/bin/Debug/net8.0/Polly.dll
+/Users/lakshaymalhotra/Desktop/Work/Reddit_Projects/PentyFlix/PentyFlixAPI/pentyflixApi/bin/Debug/net8.0/Polly.Core.dll
+/Users/lakshaymalhotra/Desktop/Work/Reddit_Projects/PentyFlix/PentyFlixAPI/pentyflixApi/bin/Debug/net8.0/Polly.Extensions.Http.dll
